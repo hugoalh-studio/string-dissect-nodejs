@@ -9,5 +9,5 @@ import { StringDescriptor, StringDissectorOptions } from "./string-dissector.js"
  * @returns {StringDescriptor[]} A dissected string.
  */
 declare function stringDissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
-export default stringDissect;
+export { stringDissect };
 //# sourceMappingURL=string-dissect.d.ts.map

@@ -36,7 +36,6 @@ npm install @hugoalh/string-dissect
 ```js
 /* Either */
 import * as stringDissect from "@hugoalh/string-dissect";// All
-import stringDissect from "@hugoalh/string-dissect";// All
 import { ... } from "@hugoalh/string-dissect";// Part / Tree-shake
 ```
 
@@ -162,5 +161,5 @@ let textNormal = "Vel ex sit est sit est tempor enim et voluptua consetetur gube
 
 /* Class */new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑").map((element) => { return element.value; });
 /* Func. */stringDissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑").map((element) => { return element.value; });
-//*=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
+//=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
 ```

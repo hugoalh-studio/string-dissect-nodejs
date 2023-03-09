@@ -17,4 +17,6 @@ function stringDissect(item: string, {
 		safeWords
 	}).dissect(item);
 }
-export default stringDissect;
+export {
+	stringDissect
+};
