@@ -1,3 +1,4 @@
+import { type StringDescriptor, type StringDissectorOptions, type StringDissectType } from "./type.js";
 import ansiRegExpOriginal from "ansi-regex";
 import characterRegExpOriginal from "char-regex";
 import emojiRegExpOriginal from "emoji-regex";
@@ -7,22 +8,6 @@ const characterRegExp = new RegExp(characterRegExpOriginal().source, "u");
 const emojiRegExp = new RegExp(emojiRegExpOriginal().source, "u");
 const urlRegExp = new RegExp(urlRegExpOriginal().source, "u");
 const wordsRegExp = /[\d\w]+(?:[~@#$%&*_'.-][\d\w]+)*/u;
-interface StringDissectorOptions {
-	/** Whether to prevent URLs get splitted. [Default: `true`] */
-	safeURLs?: boolean;
-	/** Whether to prevent words get splitted. [Default: `true`] */
-	safeWords?: boolean;
-}
-type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-type StringDescriptor = {
-	value: string;
-	type: StringDissectType;
-	typeANSI: boolean;
-	typeCharacter: boolean;
-	typeEmoji: boolean;
-	typeUrl: boolean;
-	typeWord: boolean;
-};
 /**
  * @class StringDissector
  * @description Dissect the string; Safe with the emojis, URLs, and words.
@@ -126,8 +111,5 @@ class StringDissector {
 	}
 }
 export {
-	StringDescriptor,
-	StringDissector,
-	StringDissectorOptions,
-	StringDissectType
+	StringDissector
 };

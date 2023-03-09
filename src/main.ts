@@ -1,9 +1,10 @@
-import { StringDescriptor, StringDissector, StringDissectorOptions, StringDissectType } from "./string-dissector.js";
 import { stringDissect } from "./string-dissect.js";
+import { StringDissector } from "./string-dissector.js";
+import { type StringDescriptor, type StringDissectorOptions, type StringDissectType } from "./type.js";
 export {
-	StringDescriptor,
+	type StringDescriptor,
 	stringDissect,
 	StringDissector,
-	StringDissectorOptions,
-	StringDissectType
+	type StringDissectorOptions,
+	type StringDissectType
 };

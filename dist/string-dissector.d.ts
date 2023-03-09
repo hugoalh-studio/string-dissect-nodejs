@@ -1,19 +1,4 @@
-interface StringDissectorOptions {
-    /** Whether to prevent URLs get splitted. [Default: `true`] */
-    safeURLs?: boolean;
-    /** Whether to prevent words get splitted. [Default: `true`] */
-    safeWords?: boolean;
-}
-type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-type StringDescriptor = {
-    value: string;
-    type: StringDissectType;
-    typeANSI: boolean;
-    typeCharacter: boolean;
-    typeEmoji: boolean;
-    typeUrl: boolean;
-    typeWord: boolean;
-};
+import { type StringDescriptor, type StringDissectorOptions } from "./type.js";
 /**
  * @class StringDissector
  * @description Dissect the string; Safe with the emojis, URLs, and words.
@@ -46,5 +31,5 @@ declare class StringDissector {
      */
     static dissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
 }
-export { StringDescriptor, StringDissector, StringDissectorOptions, StringDissectType };
+export { StringDissector };
 //# sourceMappingURL=string-dissector.d.ts.map

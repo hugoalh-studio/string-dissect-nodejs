@@ -1,4 +1,4 @@
-import { StringDescriptor, StringDissectorOptions } from "./string-dissector.js";
+import { type StringDescriptor, type StringDissectorOptions } from "./type.js";
 /**
  * @function stringDissect
  * @description Dissect the string; Safe with the emojis, URLs, and words.

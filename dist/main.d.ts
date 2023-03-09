@@ -1,4 +1,5 @@
-import { StringDescriptor, StringDissector, StringDissectorOptions, StringDissectType } from "./string-dissector.js";
 import { stringDissect } from "./string-dissect.js";
-export { StringDescriptor, stringDissect, StringDissector, StringDissectorOptions, StringDissectType };
+import { StringDissector } from "./string-dissector.js";
+import { type StringDescriptor, type StringDissectorOptions, type StringDissectType } from "./type.js";
+export { type StringDescriptor, stringDissect, StringDissector, type StringDissectorOptions, type StringDissectType };
 //# sourceMappingURL=main.d.ts.map
