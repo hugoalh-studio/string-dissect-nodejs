@@ -35,8 +35,9 @@ npm install @hugoalh/string-dissect
 
 ```js
 /* Either */
-import * as stringDissect from "@hugoalh/string-dissect";// All
-import { ... } from "@hugoalh/string-dissect";// Part / Tree-shake
+import { ... } from "@hugoalh/string-dissect";// Named Import
+import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
+import stringDissect from "@hugoalh/string-dissect";// Default Import
 ```
 
 ### API

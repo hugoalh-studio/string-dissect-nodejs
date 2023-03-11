@@ -1,4 +1,6 @@
 *
+!asset/**
+!bin/**
 !dist/**
 !lib/**
 !LICENSE.md
