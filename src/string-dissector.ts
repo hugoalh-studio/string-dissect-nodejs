@@ -12,7 +12,7 @@ const wordsRegExp = /[\d\w]+(?:[~@#$%&*_'.-][\d\w]+)*/u;
  * @class StringDissector
  * @description Dissect the string; Safe with the emojis, URLs, and words.
  */
-export class StringDissector {
+class StringDissector {
 	#safeURLs: boolean;
 	#safeWords: boolean;
 	/**
@@ -110,3 +110,6 @@ export class StringDissector {
 		}).dissect(item);
 	}
 }
+export {
+	StringDissector
+};

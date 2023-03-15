@@ -8,5 +8,6 @@ import { type StringDescriptor, type StringDissectorOptions } from "./type.js";
  * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
  * @returns {StringDescriptor[]} A dissected string.
  */
-export declare function stringDissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
+declare function stringDissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
+export { stringDissect };
 //# sourceMappingURL=string-dissect.d.ts.map

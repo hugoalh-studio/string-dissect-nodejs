@@ -1,4 +1,4 @@
-export interface StringDissectorOptions {
+interface StringDissectorOptions {
 	/**
 	 * @property safeURLs
 	 * @description Whether to prevent URLs get splitted.
@@ -12,8 +12,8 @@ export interface StringDissectorOptions {
 	 */
 	safeWords?: boolean;
 }
-export type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-export type StringDescriptor = {
+type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
+type StringDescriptor = {
 	value: string;
 	type: StringDissectType;
 	typeANSI: boolean;
@@ -21,4 +21,9 @@ export type StringDescriptor = {
 	typeEmoji: boolean;
 	typeUrl: boolean;
 	typeWord: boolean;
+};
+export {
+	type StringDissectorOptions,
+	type StringDissectType,
+	type StringDescriptor
 };
