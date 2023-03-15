@@ -8,10 +8,9 @@ import { StringDissector } from "./string-dissector.js";
  * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
  * @returns {StringDescriptor[]} A dissected string.
  */
-function stringDissect(item, { safeURLs = true, safeWords = true } = {}) {
+export function stringDissect(item, { safeURLs = true, safeWords = true } = {}) {
     return new StringDissector({
         safeURLs,
         safeWords
     }).dissect(item);
 }
-export { stringDissect };

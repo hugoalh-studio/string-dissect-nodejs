@@ -23,7 +23,7 @@ const wordsRegExp = /[\d\w]+(?:[~@#$%&*_'.-][\d\w]+)*/u;
  * @class StringDissector
  * @description Dissect the string; Safe with the emojis, URLs, and words.
  */
-class StringDissector {
+export class StringDissector {
     /**
      * @constructor
      * @description Initialize string dissector.
@@ -116,4 +116,3 @@ class StringDissector {
     }
 }
 _StringDissector_safeURLs = new WeakMap(), _StringDissector_safeWords = new WeakMap();
-export { StringDissector };

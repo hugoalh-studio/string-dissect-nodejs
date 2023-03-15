@@ -3,7 +3,7 @@ import { type StringDescriptor, type StringDissectorOptions } from "./type.js";
  * @class StringDissector
  * @description Dissect the string; Safe with the emojis, URLs, and words.
  */
-declare class StringDissector {
+export declare class StringDissector {
     #private;
     /**
      * @constructor
@@ -31,5 +31,4 @@ declare class StringDissector {
      */
     static dissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
 }
-export { StringDissector };
 //# sourceMappingURL=string-dissector.d.ts.map
