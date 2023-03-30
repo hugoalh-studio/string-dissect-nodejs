@@ -44,69 +44,43 @@ import stringDissect from "@hugoalh/string-dissect";// Default Import
 
 #### Class
 
-<ul>
-<li>
-
-```ts
-new StringDissector(options: StringDissectorOptions = {}): StringDissector;
-  .dissect(item: string): StringDescriptor[];
-
-StringDissector.dissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
-```
-
-</li>
-</ul>
+- ```ts
+  new StringDissector(options: StringDissectorOptions = {}): StringDissector;
+    .dissect(item: string): StringDescriptor[];
+  
+  StringDissector.dissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
+  ```
 
 #### Function
 
-<ul>
-<li>
-
-```ts
-stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
-```
-
-</li>
-</ul>
+- ```ts
+  stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
+  ```
 
 #### Interface / Type
 
-<ul>
-<li>
-
-```ts
-interface StringDissectorOptions {
-  /* Whether to prevent URLs get splitted. [Default: `true`] */
-  safeURLs?: boolean;
-  /* Whether to prevent words get splitted. [Default: `true`] */
-  safeWords?: boolean;
-};
-```
-
-</li>
-<li>
-
-```ts
-type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-```
-
-</li>
-<li>
-
-```ts
-type StringDescriptor = {
-  value: string;
-  type: StringDissectType;
-  typeANSI: boolean;
-  typeCharacter: boolean;
-  typeEmoji: boolean;
-  typeUrl: boolean;
-  typeWord: boolean;
-};
-```
-
-</li>
-</ul>
+- ```ts
+  interface StringDissectorOptions {
+    /* Whether to prevent URLs get splitted. [Default: `true`] */
+    safeURLs?: boolean;
+    /* Whether to prevent words get splitted. [Default: `true`] */
+    safeWords?: boolean;
+  };
+  ```
+- ```ts
+  type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
+  ```
+- ```ts
+  type StringDescriptor = {
+    value: string;
+    type: StringDissectType;
+    typeANSI: boolean;
+    typeCharacter: boolean;
+    typeEmoji: boolean;
+    typeUrl: boolean;
+    typeWord: boolean;
+  };
+  ```
 
 ### Example
 
