@@ -64,7 +64,7 @@ declare class StringDissector {
  * @returns {StringDescriptor[]} A dissected string.
  */
 declare function stringDissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
-export { stringDissect, StringDissector, type StringDissectorOptions, type StringDissectType, type StringDescriptor };
+export { stringDissect, StringDissector, type StringDescriptor, type StringDissectorOptions, type StringDissectType };
 declare const _default: {
     stringDissect: typeof stringDissect;
     StringDissector: typeof StringDissector;

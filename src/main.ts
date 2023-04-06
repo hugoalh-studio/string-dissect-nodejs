@@ -154,9 +154,9 @@ function stringDissect(item: string, {
 export {
 	stringDissect,
 	StringDissector,
+	type StringDescriptor,
 	type StringDissectorOptions,
-	type StringDissectType,
-	type StringDescriptor
+	type StringDissectType
 };
 export default {
 	stringDissect,
