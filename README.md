@@ -21,17 +21,13 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 
 ## 📚 Documentation
 
-### Getting Started
-
-#### Install
+### Target
 
 - NodeJS ^ v12.20.0 || ^ v14.15.0 || >= v16.13.0
 
 ```sh
 npm install @hugoalh/string-dissect
 ```
-
-#### Use
 
 ```js
 /* Either */
