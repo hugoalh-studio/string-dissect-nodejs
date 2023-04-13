@@ -31,11 +31,9 @@ declare class StringDissector {
     /**
      * @constructor
      * @description Initialize string dissector.
-     * @param {object} [param1={}] Options.
-     * @param {boolean} [param1.safeURLs=true] Whether to prevent URLs get splitted.
-     * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
+     * @param {StringDissectorOptions} [options={}] Options.
      */
-    constructor({ safeURLs, safeWords }?: StringDissectorOptions);
+    constructor(options?: StringDissectorOptions);
     /**
      * @method dissect
      * @description Dissect the string.
@@ -47,23 +45,19 @@ declare class StringDissector {
      * @static dissect
      * @description Dissect the string; Safe with the emojis, URLs, and words.
      * @param {string} item String that need to dissect.
-     * @param {object} [param1={}] Options.
-     * @param {boolean} [param1.safeURLs=true] Whether to prevent URLs get splitted.
-     * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
+     * @param {StringDissectorOptions} [options={}] Options.
      * @returns {StringDescriptor[]} A dissected string.
      */
-    static dissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
+    static dissect(item: string, options?: StringDissectorOptions): StringDescriptor[];
 }
 /**
  * @function stringDissect
  * @description Dissect the string; Safe with the emojis, URLs, and words.
  * @param {string} item String that need to dissect.
- * @param {object} [param1={}] Options.
- * @param {boolean} [param1.safeURLs=true] Whether to prevent URLs get splitted.
- * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
+ * @param {StringDissectorOptions} [options={}] Options.
  * @returns {StringDescriptor[]} A dissected string.
  */
-declare function stringDissect(item: string, { safeURLs, safeWords }?: StringDissectorOptions): StringDescriptor[];
+declare function stringDissect(item: string, options?: StringDissectorOptions): StringDescriptor[];
 export { stringDissect, StringDissector, type StringDescriptor, type StringDissectorOptions, type StringDissectType };
 declare const _default: {
     stringDissect: typeof stringDissect;

@@ -41,14 +41,13 @@ class StringDissector {
 	/**
 	 * @constructor
 	 * @description Initialize string dissector.
-	 * @param {object} [param1={}] Options.
-	 * @param {boolean} [param1.safeURLs=true] Whether to prevent URLs get splitted.
-	 * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
+	 * @param {StringDissectorOptions} [options={}] Options.
 	 */
-	constructor({
-		safeURLs = true,
-		safeWords = true
-	}: StringDissectorOptions = {}) {
+	constructor(options: StringDissectorOptions = {}) {
+		let {
+			safeURLs = true,
+			safeWords = true
+		} = options;
 		if (typeof safeURLs !== "boolean") {
 			throw new TypeError(`Argument \`safeURLs\` must be type of boolean!`);
 		}
@@ -118,38 +117,22 @@ class StringDissector {
 	 * @static dissect
 	 * @description Dissect the string; Safe with the emojis, URLs, and words.
 	 * @param {string} item String that need to dissect.
-	 * @param {object} [param1={}] Options.
-	 * @param {boolean} [param1.safeURLs=true] Whether to prevent URLs get splitted.
-	 * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
+	 * @param {StringDissectorOptions} [options={}] Options.
 	 * @returns {StringDescriptor[]} A dissected string.
 	 */
-	static dissect(item: string, {
-		safeURLs = true,
-		safeWords = true
-	}: StringDissectorOptions = {}): StringDescriptor[] {
-		return new this({
-			safeURLs,
-			safeWords
-		}).dissect(item);
+	static dissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[] {
+		return new this(options).dissect(item);
 	}
 }
 /**
  * @function stringDissect
  * @description Dissect the string; Safe with the emojis, URLs, and words.
  * @param {string} item String that need to dissect.
- * @param {object} [param1={}] Options.
- * @param {boolean} [param1.safeURLs=true] Whether to prevent URLs get splitted.
- * @param {boolean} [param1.safeWords=true] Whether to prevent words get splitted.
+ * @param {StringDissectorOptions} [options={}] Options.
  * @returns {StringDescriptor[]} A dissected string.
  */
-function stringDissect(item: string, {
-	safeURLs = true,
-	safeWords = true
-}: StringDissectorOptions = {}): StringDescriptor[] {
-	return new StringDissector({
-		safeURLs,
-		safeWords
-	}).dissect(item);
+function stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[] {
+	return new StringDissector(options).dissect(item);
 }
 export {
 	stringDissect,
