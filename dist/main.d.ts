@@ -59,9 +59,4 @@ declare class StringDissector {
  */
 declare function stringDissect(item: string, options?: StringDissectorOptions): StringDescriptor[];
 export { stringDissect, StringDissector, type StringDescriptor, type StringDissectorOptions, type StringDissectType };
-declare const _default: {
-    stringDissect: typeof stringDissect;
-    StringDissector: typeof StringDissector;
-};
-export default _default;
 //# sourceMappingURL=main.d.ts.map

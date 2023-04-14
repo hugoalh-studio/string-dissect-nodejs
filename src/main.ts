@@ -141,7 +141,3 @@ export {
 	type StringDissectorOptions,
 	type StringDissectType
 };
-export default {
-	stringDissect,
-	StringDissector
-};

@@ -121,7 +121,3 @@ function stringDissect(item, options = {}) {
     return new StringDissector(options).dissect(item);
 }
 export { stringDissect, StringDissector };
-export default {
-    stringDissect,
-    StringDissector
-};

@@ -32,7 +32,6 @@ npm install @hugoalh/string-dissect
 /* Either */
 import { ... } from "@hugoalh/string-dissect";// Named Import
 import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
-import stringDissect from "@hugoalh/string-dissect";// Default Import
 ```
 
 ### API
