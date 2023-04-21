@@ -55,10 +55,8 @@ import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
 
 - ```ts
   interface StringDissectorOptions {
-    /* Whether to prevent URLs get splitted. [Default: `true`] */
-    safeURLs?: boolean;
-    /* Whether to prevent words get splitted. [Default: `true`] */
-    safeWords?: boolean;
+    safeURLs: boolean = true;// Whether to prevent URLs get splitted.
+    safeWords: boolean = true;// Whether to prevent words get splitted.
   };
   ```
 - ```ts
