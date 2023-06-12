@@ -63,7 +63,7 @@ import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
   type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
   ```
 - ```ts
-  type StringDescriptor = {
+  interface StringDescriptor {
     value: string;
     type: StringDissectType;
     typeANSI: boolean;

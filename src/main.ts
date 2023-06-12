@@ -22,7 +22,7 @@ interface StringDissectorOptions {
 	safeWords?: boolean;
 }
 type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-type StringDescriptor = {
+interface StringDescriptor {
 	value: string;
 	type: StringDissectType;
 	typeANSI: boolean;
@@ -30,7 +30,7 @@ type StringDescriptor = {
 	typeEmoji: boolean;
 	typeUrl: boolean;
 	typeWord: boolean;
-};
+}
 /**
  * @class StringDissector
  * @description Dissect the string; Safe with the emojis, URLs, and words.
