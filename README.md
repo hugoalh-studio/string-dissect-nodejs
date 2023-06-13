@@ -54,15 +54,6 @@ import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
 #### Interface / Type
 
 - ```ts
-  interface StringDissectorOptions {
-    safeURLs: boolean = true;// Whether to prevent URLs get splitted.
-    safeWords: boolean = true;// Whether to prevent words get splitted.
-  }
-  ```
-- ```ts
-  type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-  ```
-- ```ts
   interface StringDescriptor {
     value: string;
     type: StringDissectType;
@@ -72,6 +63,15 @@ import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
     typeUrl: boolean;
     typeWord: boolean;
   }
+  ```
+- ```ts
+  interface StringDissectorOptions {
+    safeURLs: boolean = true;// Whether to prevent URLs get splitted.
+    safeWords: boolean = true;// Whether to prevent words get splitted.
+  }
+  ```
+- ```ts
+  type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
   ```
 
 ### Example
