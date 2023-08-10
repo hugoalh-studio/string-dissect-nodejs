@@ -23,27 +23,21 @@ npm install @hugoalh/string-dissect
 /* Either */
 import { ... } from "@hugoalh/string-dissect";// Named Import
 import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
+import StringDissector from "@hugoalh/string-dissect";// Default Import (Class `StringDissector`)
 ```
 
 ### API
 
-#### Class
-
 - ```ts
-  new StringDissector(options: StringDissectorOptions = {}): StringDissector;
-    .dissect(item: string): StringDescriptor[];
-  
-  StringDissector.dissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
+  class StringDissector {
+    constructor(options: StringDissectorOptions = {}): StringDissector;
+    dissect(item: string): StringDescriptor[];
+    static dissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
+  }
   ```
-
-#### Function
-
 - ```ts
-  stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
+  function stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
   ```
-
-#### Interface / Type
-
 - ```ts
   interface StringDescriptor {
     value: string;
@@ -57,8 +51,16 @@ import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
   ```
 - ```ts
   interface StringDissectorOptions {
-    safeURLs: boolean = true;// Whether to prevent URLs get splitted.
-    safeWords: boolean = true;// Whether to prevent words get splitted.
+    /**
+     * Whether to prevent URLs get splitted.
+     * @default true
+     */
+    safeURLs?: boolean;
+    /**
+     * Whether to prevent words get splitted.
+     * @default true
+     */
+    safeWords?: boolean;
   }
   ```
 - ```ts

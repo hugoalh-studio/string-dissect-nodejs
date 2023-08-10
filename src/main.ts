@@ -6,23 +6,21 @@ const ansiRegExp = new RegExp(ansiRegExpOriginal().source, "u");
 const characterRegExp = new RegExp(characterRegExpOriginal().source, "u");
 const emojiRegExp = new RegExp(emojiRegExpOriginal().source, "u");
 const urlRegExp = new RegExp(urlRegExpOriginal().source, "u");
-const wordsRegExp = /[\d\w]+(?:[~@#$%&*_'.-][\d\w]+)*/u;
-interface StringDissectorOptions {
+const wordRegExp = /[\d\w]+(?:[~@#$%&*_'.-][\d\w]+)*/u;
+export interface StringDissectorOptions {
 	/**
-	 * @property safeURLs
-	 * @description Whether to prevent URLs get splitted.
+	 * Whether to prevent URLs get splitted.
 	 * @default true
 	 */
 	safeURLs?: boolean;
 	/**
-	 * @property safeWords
-	 * @description Whether to prevent words get splitted.
+	 * Whether to prevent words get splitted.
 	 * @default true
 	 */
 	safeWords?: boolean;
 }
-type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-interface StringDescriptor {
+export type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
+export interface StringDescriptor {
 	value: string;
 	type: StringDissectType;
 	typeANSI: boolean;
@@ -32,34 +30,29 @@ interface StringDescriptor {
 	typeWord: boolean;
 }
 /**
- * @class StringDissector
- * @description Dissect the string; Safe with the emojis, URLs, and words.
+ * Dissect the string; Safe with the emojis, URLs, and words.
  */
-class StringDissector {
-	#safeURLs: boolean;
-	#safeWords: boolean;
+export class StringDissector {
+	#safeURLs = true;
+	#safeWords = true;
 	/**
-	 * @constructor
-	 * @description Initialize string dissector.
+	 * Initialize string dissector.
 	 * @param {StringDissectorOptions} [options={}] Options.
 	 */
 	constructor(options: StringDissectorOptions = {}) {
-		let {
-			safeURLs = true,
-			safeWords = true
-		} = options;
-		if (typeof safeURLs !== "boolean") {
-			throw new TypeError(`Argument \`safeURLs\` must be type of boolean!`);
+		if (typeof options.safeURLs === "boolean") {
+			this.#safeURLs = options.safeURLs;
+		} else if (typeof options.safeURLs !== "undefined") {
+			throw new TypeError(`Argument \`options.safeURLs\` must be type of boolean or undefined!`);
 		}
-		if (typeof safeWords !== "boolean") {
-			throw new TypeError(`Argument \`safeWords\` must be type of boolean!`);
+		if (typeof options.safeWords === "boolean") {
+			this.#safeWords = options.safeWords;
+		} else if (typeof options.safeWords !== "undefined") {
+			throw new TypeError(`Argument \`options.safeWords\` must be type of boolean or undefined!`);
 		}
-		this.#safeURLs = safeURLs;
-		this.#safeWords = safeWords;
 	}
 	/**
-	 * @method dissect
-	 * @description Dissect the string.
+	 * Dissect the string.
 	 * @param {string} item String that need to dissect.
 	 * @returns {StringDescriptor[]} A dissected string.
 	 */
@@ -67,16 +60,14 @@ class StringDissector {
 		if (typeof item !== "string") {
 			throw new TypeError(`Argument \`item\` must be type of string!`);
 		}
-		let itemRaw: string = item;
 		let result: StringDescriptor[] = [];
 		/**
 		 * @access private
-		 * @function unshiftItem
 		 * @param {string} value
 		 * @param {StringDissectType} type
 		 * @returns {void}
 		 */
-		function unshiftItem(value: string, type: StringDissectType): void {
+		function resultPush(value: string, type: StringDissectType): void {
 			result.push({
 				value,
 				type,
@@ -86,36 +77,45 @@ class StringDissector {
 				typeUrl: type === "Url",
 				typeWord: type === "Word"
 			});
-			itemRaw = itemRaw.substring(value.length);
 		}
-		while (itemRaw.length > 0) {
-			if (itemRaw.search(ansiRegExp) === 0) {
-				unshiftItem(itemRaw.match(ansiRegExp)[0], "ANSI");
+		for (let cursor = 0; cursor < item.length; cursor += 1) {
+			let itemSlice: string = item.slice(cursor);
+			if (itemSlice.search(ansiRegExp) === 0) {
+				let value: string = itemSlice.match(ansiRegExp)[0];
+				resultPush(value, "ANSI");
+				cursor += value.length;
 				continue;
 			}
-			if (itemRaw.search(emojiRegExp) === 0) {
-				unshiftItem(itemRaw.match(emojiRegExp)[0], "Emoji");
+			if (itemSlice.search(emojiRegExp) === 0) {
+				let value: string = itemSlice.match(emojiRegExp)[0];
+				resultPush(value, "Emoji");
+				cursor += value.length;
 				continue;
 			}
-			if (this.#safeURLs && itemRaw.search(urlRegExp) === 0) {
-				unshiftItem(itemRaw.match(urlRegExp)[0], "Url");
+			if (this.#safeURLs && itemSlice.search(urlRegExp) === 0) {
+				let value: string = itemSlice.match(urlRegExp)[0];
+				resultPush(value, "Url");
+				cursor += value.length;
 				continue;
 			}
-			if (this.#safeWords && itemRaw.search(wordsRegExp) === 0) {
-				unshiftItem(itemRaw.match(wordsRegExp)[0], "Word");
+			if (this.#safeWords && itemSlice.search(wordRegExp) === 0) {
+				let value: string = itemSlice.match(wordRegExp)[0];
+				resultPush(value, "Word");
+				cursor += value.length;
 				continue;
 			}
-			if (itemRaw.search(characterRegExp) === 0) {
-				unshiftItem(itemRaw.match(characterRegExp)[0], "Character");
+			if (itemSlice.search(characterRegExp) === 0) {
+				let value: string = itemSlice.match(characterRegExp)[0];
+				resultPush(value, "Character");
+				cursor += value.length;
 				continue;
 			}
-			unshiftItem(itemRaw.charAt(0), "Character");
+			resultPush(itemSlice.charAt(0), "Character");
 		}
 		return result;
 	}
 	/**
-	 * @static dissect
-	 * @description Dissect the string; Safe with the emojis, URLs, and words.
+	 * Dissect the string; Safe with the emojis, URLs, and words.
 	 * @param {string} item String that need to dissect.
 	 * @param {StringDissectorOptions} [options={}] Options.
 	 * @returns {StringDescriptor[]} A dissected string.
@@ -124,20 +124,13 @@ class StringDissector {
 		return new this(options).dissect(item);
 	}
 }
+export default StringDissector;
 /**
- * @function stringDissect
- * @description Dissect the string; Safe with the emojis, URLs, and words.
+ * Dissect the string; Safe with the emojis, URLs, and words.
  * @param {string} item String that need to dissect.
  * @param {StringDissectorOptions} [options={}] Options.
  * @returns {StringDescriptor[]} A dissected string.
  */
-function stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[] {
+export function stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[] {
 	return new StringDissector(options).dissect(item);
 }
-export {
-	stringDissect,
-	StringDissector,
-	type StringDescriptor,
-	type StringDissectorOptions,
-	type StringDissectType
-};
