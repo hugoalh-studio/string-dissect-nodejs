@@ -26,7 +26,7 @@
 		"ansi-regex": "^6.0.1",
 		"char-regex": "^2.0.1",
 		"emoji-regex": "^10.2.1",
-		"url-regex-safe": "^3.0.0"
+		"url-regex-safe": "^4.0.0"
 	},
 	"devDependencies": {
 		"@types/url-regex-safe": "^1.0.0",
