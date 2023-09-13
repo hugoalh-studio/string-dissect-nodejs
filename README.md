@@ -10,24 +10,43 @@
 
 A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 
-## 📓 Documentation
+## 🔰 Begin
 
-### Getting Started
+### Bun
 
-- NodeJS ^ v12.20.0 || ^ v14.15.0 || >= v16.13.0
+> **🧪 Experimental:** Bun is still under development.
 
-```sh
-npm install @hugoalh/string-dissect
-```
+- **Target Version:** ^ v1.0.0, &:
+  - TypeScript >= v5.1.0 *\[Development\]*
+- **Require Permission:** *N/A*
+- **Domain/Registry:**
+  - [NPM](https://www.npmjs.com/package/@hugoalh/string-dissect)
+    ```sh
+    bun add @hugoalh/string-dissect
+    ```
+    ```js
+    import ... from "@hugoalh/string-dissect[@<Tag>]";
+    ```
 
-```js
-/* Either */
-import { ... } from "@hugoalh/string-dissect";// Named Import
-import * as stringDissect from "@hugoalh/string-dissect";// Namespace Import
-import StringDissector from "@hugoalh/string-dissect";// Default Import (Class `StringDissector`)
-```
+> **ℹ️ Notice:** It is also able to import part of the module with sub path if available, see [file `package.json`](./package.json) property `exports` for available sub paths.
 
-### API
+### NodeJS
+
+- **Target Version:** ^ v12.20.0 \|\| ^ v14.15.0 \|\| >= v16.13.0, &:
+  - TypeScript >= v5.1.0 *\[Development\]*
+- **Require Permission:** *N/A*
+- **Domain/Registry:**
+  - [NPM](https://www.npmjs.com/package/@hugoalh/string-dissect)
+    ```sh
+    npm install @hugoalh/string-dissect
+    ```
+    ```js
+    import ... from "@hugoalh/string-dissect";
+    ```
+
+> **ℹ️ Notice:** It is also able to import part of the module with sub path if available, see [file `package.json`](./package.json) property `exports` for available sub paths.
+
+## 🧩 API
 
 - ```ts
   class StringDissector {
@@ -68,11 +87,14 @@ import StringDissector from "@hugoalh/string-dissect";// Default Import (Class `
   type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
   ```
 
-### Example
+> **ℹ️ Notice:** Documentation is included inside the script file.
+
+## ✍️ Example
 
 - ```js
-  let textNormal = "Vel ex sit est sit est tempor enim et voluptua consetetur gubergren gubergren ut.";
-  
+  import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
+  const textNormal = "Vel ex sit est sit est tempor enim et voluptua consetetur gubergren gubergren ut.";
+
   /* Either */
   new StringDissector().dissect(textNormal);
   stringDissect(textNormal);
@@ -89,7 +111,7 @@ import StringDissector from "@hugoalh/string-dissect";// Default Import (Class `
     ... +20
   ]
   */
-  
+
   /* Either */
   new StringDissector({ safeWords: false }).dissect(textNormal);
   stringDissect(textNormal, { safeWords: false });
@@ -108,6 +130,8 @@ import StringDissector from "@hugoalh/string-dissect";// Default Import (Class `
   */
   ```
 - ```js
+  import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
+
   /* Either */
   new StringDissector().dissect("GitHub homepage is https://github.com.");
   stringDissect("GitHub homepage is https://github.com.");
@@ -125,6 +149,8 @@ import StringDissector from "@hugoalh/string-dissect";// Default Import (Class `
   */
   ```
 - ```js
+  import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
+
   /* Either */
   new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑").map((element) => { return element.value; });
   stringDissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑").map((element) => { return element.value; });
