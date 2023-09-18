@@ -26,12 +26,12 @@
 		"ansi-regex": "^6.0.1",
 		"char-regex": "^2.0.1",
 		"emoji-regex": "^10.2.1",
-		"url-regex-safe": "^3.0.0"
+		"url-regex-safe": "~3.0.0"
 	},
 	"devDependencies": {
 		"@types/url-regex-safe": "^1.0.0",
-		"@typescript-eslint/eslint-plugin": "^6.6.0",
-		"@typescript-eslint/parser": "^6.6.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
 		"eslint": "^8.49.0",
 		"eslint-plugin-only-warn": "^1.1.0",
 		"typescript": "^5.2.2"
