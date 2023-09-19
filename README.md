@@ -22,7 +22,7 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 - **Domain/Registry:**
   - [NPM](https://www.npmjs.com/package/@hugoalh/string-dissect)
     ```sh
-    bun add @hugoalh/string-dissect
+    bun add @hugoalh/string-dissect[@<Tag>]
     ```
     ```js
     import ... from "@hugoalh/string-dissect[@<Tag>]";
@@ -38,7 +38,7 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 - **Domain/Registry:**
   - [NPM](https://www.npmjs.com/package/@hugoalh/string-dissect)
     ```sh
-    npm install @hugoalh/string-dissect
+    npm install @hugoalh/string-dissect[@<Tag>]
     ```
     ```js
     import ... from "@hugoalh/string-dissect";
