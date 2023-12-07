@@ -1,6 +1,6 @@
 {
 	"name": "@hugoalh/string-dissect",
-	"version": "1.2.1",
+	"version": "2.0.0-beta.1",
 	"description": "A module to dissect the string; Safe with the emojis, URLs, and words.",
 	"keywords": [
 		"dissect",
@@ -24,20 +24,18 @@
 	},
 	"dependencies": {
 		"ansi-regex": "^6.0.1",
-		"char-regex": "^2.0.1",
-		"emoji-regex": "^10.3.0",
-		"url-regex-safe": "~3.0.0"
+		"url-regex-safe": "^4.0.0"
 	},
 	"devDependencies": {
 		"@types/url-regex-safe": "^1.0.2",
-		"@typescript-eslint/eslint-plugin": "^6.13.1",
-		"@typescript-eslint/parser": "^6.13.1",
+		"@typescript-eslint/eslint-plugin": "^6.13.2",
+		"@typescript-eslint/parser": "^6.13.2",
 		"eslint": "^8.55.0",
 		"eslint-plugin-only-warn": "^1.1.0",
-		"typescript": "^5.3.2"
+		"typescript": "^5.3.3"
 	},
 	"engines": {
-		"node": "^12.20.0 || ^14.15.0 || >=16.13.0"
+		"node": ">=20.9.0"
 	},
 	"private": false,
 	"publishConfig": {

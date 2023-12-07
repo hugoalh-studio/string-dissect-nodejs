@@ -32,7 +32,7 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 
 ### NodeJS
 
-- **Target Version:** ^ v12.20.0 \|\| ^ v14.15.0 \|\| >= v16.13.0, &:
+- **Target Version:** >= v20.9.0, &:
   - TypeScript >= v5.1.0 *\[Development\]*
 - **Require Permission:** *N/A*
 - **Domain/Registry:**
@@ -51,26 +51,57 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 - ```ts
   class StringDissector {
     constructor(options: StringDissectorOptions = {}): StringDissector;
-    dissect(item: string): StringDescriptor[];
-    static dissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
+    dissect(item: string, optionsOverride: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
+    dissectExtend(item: string, optionsOverride: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
+    static dissect(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
+    static dissectExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
   }
   ```
 - ```ts
-  function stringDissect(item: string, options: StringDissectorOptions = {}): StringDescriptor[];
+  function stringDissect(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
   ```
 - ```ts
-  interface StringDescriptor {
+  function stringDissectExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
+  ```
+- ```ts
+  enum StringSegmentType {
+    ansi = "ansi",
+    ANSI = "ansi",
+    character = "character",
+    Character = "character",
+    emoji = "emoji",
+    Emoji = "emoji",
+    url = "url",
+    Url = "url",
+    URL = "url",
+    word = "word",
+    Word = "word"
+  }
+  ```
+- ```ts
+  interface StringSegmentDescriptor {
+    type: StringSegmentType;
     value: string;
-    type: StringDissectType;
-    typeANSI: boolean;
-    typeCharacter: boolean;
-    typeEmoji: boolean;
-    typeUrl: boolean;
-    typeWord: boolean;
+  }
+  ```
+- ```ts
+  interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
+    indexEnd: number;
+    indexStart: number;
   }
   ```
 - ```ts
   interface StringDissectorOptions {
+    /**
+     * The locale(s) to use in the operation; The JavaScript implementation examines locales, and then computes a locale it understands that comes closest to satisfying the expressed preference. By default, the implementation's default locale will be used. For more information, please visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument.
+     * @default undefined
+     */
+    locales?: StringDissectorLocales;
+    /**
+     * Whether to remove ANSI escape codes.
+     * @default false
+     */
+    removeANSI?: boolean;
     /**
      * Whether to prevent URLs get splitted.
      * @default true
@@ -83,9 +114,6 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
     safeWords?: boolean;
   }
   ```
-- ```ts
-  type StringDissectType = "ANSI" | "Character" | "Emoji" | "Url" | "Word";
-  ```
 
 > **ℹ️ Notice:** Documentation is included inside the script file.
 
@@ -93,38 +121,38 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 
 - ```js
   import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
-  const textNormal = "Vel ex sit est sit est tempor enim et voluptua consetetur gubergren gubergren ut.";
+  const sample1 = "Vel ex sit est sit est tempor enim et voluptua consetetur gubergren gubergren ut.";
 
   /* Either */
-  new StringDissector().dissect(textNormal);
-  stringDissect(textNormal);
+  Array.from(new StringDissector().dissect(sample1));
+  Array.from(stringDissect(sample1));
   /*=>
   [
-    { value: "Vel", type: "Word", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: false, typeWord: true },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "ex", type: "Word", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: false, typeWord: true },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "sit", type: "Word", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: false, typeWord: true },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "est", type: "Word", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: false, typeWord: true },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
+    { value: "Vel", type: "word" },
+    { value: " ", type: "character" },
+    { value: "ex", type: "word" },
+    { value: " ", type: "character" },
+    { value: "sit", type: "word" },
+    { value: " ", type: "character" },
+    { value: "est", type: "word" },
+    { value: " ", type: "character" },
     ... +20
   ]
   */
 
   /* Either */
-  new StringDissector({ safeWords: false }).dissect(textNormal);
-  stringDissect(textNormal, { safeWords: false });
+  Array.from(new StringDissector({ safeWords: false }).dissect(sample1));
+  Array.from(stringDissect(sample1, { safeWords: false }));
   /*=>
   [
-    { value: "V", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "e", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "l", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "e", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "x", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "s", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
+    { value: "V", type: "character" },
+    { value: "e", type: "character" },
+    { value: "l", type: "character" },
+    { value: " ", type: "character" },
+    { value: "e", type: "character" },
+    { value: "x", type: "character" },
+    { value: " ", type: "character" },
+    { value: "s", type: "character" },
     ... +73
   ]
   */
@@ -133,18 +161,18 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
   import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
 
   /* Either */
-  new StringDissector().dissect("GitHub homepage is https://github.com.");
-  stringDissect("GitHub homepage is https://github.com.");
+  Array.from(new StringDissector().dissect("GitHub homepage is https://github.com."));
+  Array.from(stringDissect("GitHub homepage is https://github.com."));
   /*=>
   [
-    { value: "GitHub", type: "Word", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: false, typeWord: true },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "homepage", type: "Word", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: false, typeWord: true },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "is", type: "Word", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: false, typeWord: true },
-    { value: " ", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false },
-    { value: "https://github.com", type: "Url", typeANSI: false, typeCharacter: false, typeEmoji: false, typeUrl: true, typeWord: false },
-    { value: ".", type: "Character", typeANSI: false, typeCharacter: true, typeEmoji: false, typeUrl: false, typeWord: false }
+    { value: "GitHub", type: "word" },
+    { value: " ", type: "character" },
+    { value: "homepage", type: "word" },
+    { value: " ", type: "character" },
+    { value: "is", type: "word" },
+    { value: " ", type: "character" },
+    { value: "https://github.com", type: "url" },
+    { value: ".", type: "character" }
   ]
   */
   ```
@@ -152,7 +180,7 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
   import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
 
   /* Either */
-  new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑").map((element) => { return element.value; });
-  stringDissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑").map((element) => { return element.value; });
+  Array.from(new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
+  Array.from(stringDissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
   //=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
   ```
