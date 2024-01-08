@@ -52,7 +52,7 @@ export interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
     indexStart: number;
 }
 /**
- * Dissect the string; Safe with the emojis, URLs, and words.
+ * String dissector to dissect the string; Safe with the emojis, URLs, and words.
  */
 export declare class StringDissector {
     #private;
