@@ -1,7 +1,6 @@
 # String Dissect (NodeJS)
 
 [⚖️ MIT](./LICENSE.md)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/hugoalh-studio/string-dissect-nodejs?label=Grade&logo=codefactor&logoColor=ffffff&style=flat-square "CodeFactor Grade")](https://www.codefactor.io/repository/github/hugoalh-studio/string-dissect-nodejs)
 
 |  | **Release - Latest** | **Release - Pre** |
 |:-:|:-:|:-:|
@@ -12,30 +11,12 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
 
 ## 🔰 Begin
 
-### Bun
-
-> **🧪 Experimental:** Bun is still under development.
-
-- **Target Version:** ^ v1.0.0, &:
-  - TypeScript >= v5.1.0 *\[Development\]*
-- **Require Permission:** *N/A*
-- **Domain/Registry:**
-  - [NPM](https://www.npmjs.com/package/@hugoalh/string-dissect)
-    ```sh
-    bun add @hugoalh/string-dissect[@<Tag>]
-    ```
-    ```js
-    import ... from "@hugoalh/string-dissect[@<Tag>]";
-    ```
-
-> **ℹ️ Notice:** It is also able to import part of the module with sub path if available, see [file `package.json`](./package.json) property `exports` for available sub paths.
-
 ### NodeJS
 
 - **Target Version:** >= v20.9.0, &:
   - TypeScript >= v5.1.0 *\[Development\]*
 - **Require Permission:** *N/A*
-- **Domain/Registry:**
+- **Registry:**
   - [NPM](https://www.npmjs.com/package/@hugoalh/string-dissect)
     ```sh
     npm install @hugoalh/string-dissect[@<Tag>]

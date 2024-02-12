@@ -23,6 +23,9 @@
 		"type": "git",
 		"url": "git+https://github.com/hugoalh-studio/string-dissect-nodejs.git"
 	},
+	"scripts": {
+		"build": "tsc"
+	},
 	"dependencies": {
 		"ansi-regex": "^6.0.1",
 		"url-regex-safe": "^4.0.0"
