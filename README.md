@@ -165,3 +165,7 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
   Array.from(stringDissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
   //=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
   ```
+
+## 🔗 Other Edition
+
+- [Advanced Determine (Deno)](https://github.com/hugoalh-studio/advanced-determine-deno)
