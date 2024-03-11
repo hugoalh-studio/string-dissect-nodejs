@@ -1,31 +1,73 @@
-# String Dissect (NodeJS)
+# String Dissect (JavaScript)
 
-[⚖️ MIT](./LICENSE.md)
+[**⚖️** MIT](./LICENSE.md)
 
-|  | **Release - Latest** | **Release - Pre** |
-|:-:|:-:|:-:|
-| [![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=ffffff&style=flat-square "GitHub")](https://github.com/hugoalh-studio/string-dissect-nodejs) | ![GitHub Latest Release Version](https://img.shields.io/github/release/hugoalh-studio/string-dissect-nodejs?sort=semver&label=&style=flat-square "GitHub Latest Release Version") (![GitHub Latest Release Date](https://img.shields.io/github/release-date/hugoalh-studio/string-dissect-nodejs?label=&style=flat-square "GitHub Latest Release Date")) | ![GitHub Latest Pre-Release Version](https://img.shields.io/github/release/hugoalh-studio/string-dissect-nodejs?include_prereleases&sort=semver&label=&style=flat-square "GitHub Latest Pre-Release Version") (![GitHub Latest Pre-Release Date](https://img.shields.io/github/release-date-pre/hugoalh-studio/string-dissect-nodejs?label=&style=flat-square "GitHub Latest Pre-Release Date")) |
-| [![NPM](https://img.shields.io/badge/NPM-CB3837?logo=npm&logoColor=ffffff&style=flat-square "NPM")](https://www.npmjs.com/package/@hugoalh/string-dissect) | ![NPM Latest Release Version](https://img.shields.io/npm/v/@hugoalh/string-dissect/latest?label=&style=flat-square "NPM Latest Release Version") | ![NPM Latest Pre-Release Version](https://img.shields.io/npm/v/@hugoalh/string-dissect/pre?label=&style=flat-square "NPM Latest Pre-Release Version") |
+**🗂️**
+[![GitHub: hugoalh-studio/string-dissect-js](https://img.shields.io/badge/hugoalh--studio/string--dissect--js-181717?logo=github&logoColor=ffffff&style=flat "GitHub: hugoalh-studio/string-dissect-js")](https://github.com/hugoalh-studio/string-dissect-js)
+[![NPM: @hugoalh/string-dissect](https://img.shields.io/badge/@hugoalh/string--dissect-CB3837?logo=npm&logoColor=ffffff&style=flat "NPM: @hugoalh/string-dissect")](https://www.npmjs.com/package/@hugoalh/string-dissect)
 
-A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
+**🆙** ![Latest Release Version](https://img.shields.io/github/release/hugoalh-studio/string-dissect-js?sort=semver&color=2187C0&label=&style=flat "Latest Release Version") (![Latest Release Date](https://img.shields.io/github/release-date/hugoalh-studio/string-dissect-js?color=2187C0&label=&style=flat "Latest Release Date"))
 
-## 🔰 Begin
+A JavaScript module to dissect the string; Safe with the emojis, URLs, and words.
 
-### NodeJS
+## 🎯 Target
 
-- **Target Version:** >= v20.9.0, &:
-  - TypeScript >= v5.1.0 *\[Development\]*
-- **Require Permission:** *N/A*
-- **Registry:**
-  - [NPM](https://www.npmjs.com/package/@hugoalh/string-dissect)
-    ```sh
-    npm install @hugoalh/string-dissect[@<Tag>]
-    ```
+- Bun ^ v1.0.0
+- Cloudflare Workers
+- Deno >= v1.34.0
+  > **🛡️ Require Permission**
+  >
+  > *N/A*
+- NodeJS >= v20.9.0
+
+### 🔗 Other Edition
+
+- [TypeScript](https://github.com/hugoalh-studio/string-dissect-ts)
+
+## 🔰 Usage
+
+### Via Installation
+
+> **🎯 Supported Target**
+>
+> - Cloudflare Workers
+> - NodeJS
+
+1. Install via console/shell/terminal:
+    - Via NPM
+      ```sh
+      npm install @hugoalh/string-dissect[@<Tag>]
+      ```
+    - Via PNPM
+      ```sh
+      pnpm add @hugoalh/string-dissect[@<Tag>]
+      ```
+    - Via Yarn
+      ```sh
+      yarn add @hugoalh/string-dissect[@<Tag>]
+      ```
+2. Import at the script (`<ScriptName>.js`):
     ```js
     import ... from "@hugoalh/string-dissect";
     ```
+    > **ℹ️ Note**
+    >
+    > Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `package.json`](./package.json) property `exports` for available sub paths.
 
-> **ℹ️ Notice:** It is also able to import part of the module with sub path if available, see [file `package.json`](./package.json) property `exports` for available sub paths.
+### Via NPM Specifier
+
+> **🎯 Supported Target**
+>
+> - Bun
+> - Deno
+
+1. Import at the script (`<ScriptName>.js`):
+    ```js
+    import ... from "npm:@hugoalh/string-dissect[@<Tag>]";
+    ```
+    > **ℹ️ Note**
+    >
+    > Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `package.json`](./package.json) property `exports` for available sub paths.
 
 ## 🧩 API
 
@@ -60,18 +102,6 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
   }
   ```
 - ```ts
-  interface StringSegmentDescriptor {
-    type: StringSegmentType;
-    value: string;
-  }
-  ```
-- ```ts
-  interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
-    indexEnd: number;
-    indexStart: number;
-  }
-  ```
-- ```ts
   interface StringDissectorOptions {
     /**
      * The locale(s) to use in the operation; The JavaScript implementation examines locales, and then computes a locale it understands that comes closest to satisfying the expressed preference. By default, the implementation's default locale will be used. For more information, please visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument.
@@ -95,13 +125,25 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
     safeWords?: boolean;
   }
   ```
-
-> **ℹ️ Notice:** Documentation is included inside the script file.
+- ```ts
+  interface StringSegmentDescriptor {
+    type: StringSegmentType;
+    value: string;
+  }
+  ```
+- ```ts
+  interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
+    indexEnd: number;
+    indexStart: number;
+  }
+  ```
+- ```ts
+  type StringDissectorLocales = ConstructorParameters<typeof Intl.Segmenter>[0];
+  ```
 
 ## ✍️ Example
 
 - ```js
-  import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
   const sample1 = "Vel ex sit est sit est tempor enim et voluptua consetetur gubergren gubergren ut.";
 
   /* Either */
@@ -139,8 +181,6 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
   */
   ```
 - ```js
-  import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
-
   /* Either */
   Array.from(new StringDissector().dissect("GitHub homepage is https://github.com."));
   Array.from(stringDissect("GitHub homepage is https://github.com."));
@@ -158,14 +198,8 @@ A NodeJS module to dissect the string; Safe with the emojis, URLs, and words.
   */
   ```
 - ```js
-  import { stringDissect, StringDissector } from "@hugoalh/string-dissect";
-
   /* Either */
   Array.from(new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
   Array.from(stringDissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
   //=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
   ```
-
-## 🔗 Other Edition
-
-- [Advanced Determine (Deno)](https://github.com/hugoalh-studio/advanced-determine-deno)

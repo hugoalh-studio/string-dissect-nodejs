@@ -3,7 +3,7 @@ import regexpURLOriginal from "url-regex-safe";
 const regexpANSIGlobal = new RegExp(regexpANSIOriginal().source, "gu");
 const regexpEmojiExact = /^\p{Emoji}+$/v;
 const regexpURLGlobal = new RegExp(regexpURLOriginal().source, "gu");
-type StringDissectorLocales = ConstructorParameters<typeof Intl.Segmenter>[0];
+export type StringDissectorLocales = ConstructorParameters<typeof Intl.Segmenter>[0];
 export interface StringDissectorOptions {
 	/**
 	 * The locale(s) to use in the operation; The JavaScript implementation examines locales, and then computes a locale it understands that comes closest to satisfying the expressed preference. By default, the implementation's default locale will be used. For more information, please visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument.
