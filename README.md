@@ -81,10 +81,10 @@ A JavaScript module to dissect the string; Safe with the emojis, URLs, and words
   }
   ```
 - ```ts
-  function stringDissect(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
+  function dissectString(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
   ```
 - ```ts
-  function stringDissectExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
+  function dissectStringExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
   ```
 - ```ts
   enum StringSegmentType {
@@ -148,7 +148,7 @@ A JavaScript module to dissect the string; Safe with the emojis, URLs, and words
 
   /* Either */
   Array.from(new StringDissector().dissect(sample1));
-  Array.from(stringDissect(sample1));
+  Array.from(dissectString(sample1));
   /*=>
   [
     { value: "Vel", type: "word" },
@@ -165,7 +165,7 @@ A JavaScript module to dissect the string; Safe with the emojis, URLs, and words
 
   /* Either */
   Array.from(new StringDissector({ safeWords: false }).dissect(sample1));
-  Array.from(stringDissect(sample1, { safeWords: false }));
+  Array.from(dissectString(sample1, { safeWords: false }));
   /*=>
   [
     { value: "V", type: "character" },
@@ -183,7 +183,7 @@ A JavaScript module to dissect the string; Safe with the emojis, URLs, and words
 - ```js
   /* Either */
   Array.from(new StringDissector().dissect("GitHub homepage is https://github.com."));
-  Array.from(stringDissect("GitHub homepage is https://github.com."));
+  Array.from(dissectString("GitHub homepage is https://github.com."));
   /*=>
   [
     { value: "GitHub", type: "word" },
@@ -200,6 +200,6 @@ A JavaScript module to dissect the string; Safe with the emojis, URLs, and words
 - ```js
   /* Either */
   Array.from(new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
-  Array.from(stringDissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
+  Array.from(dissectString("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
   //=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
   ```
