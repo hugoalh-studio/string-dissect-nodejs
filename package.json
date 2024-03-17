@@ -40,10 +40,10 @@
 		"url-regex-safe": "4.0.0"
 	},
 	"devDependencies": {
-		"@stylistic/eslint-plugin": "^1.6.3",
+		"@stylistic/eslint-plugin": "^1.7.0",
 		"@types/url-regex-safe": "^1.0.2",
-		"@typescript-eslint/eslint-plugin": "^7.1.1",
-		"@typescript-eslint/parser": "^7.1.1",
+		"@typescript-eslint/eslint-plugin": "^7.2.0",
+		"@typescript-eslint/parser": "^7.2.0",
 		"eslint": "^8.57.0",
 		"eslint-plugin-only-warn": "^1.1.0",
 		"typescript": "^5.4.2"
